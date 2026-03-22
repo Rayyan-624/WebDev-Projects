@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Cricket Game</title>
+    <link rel="stylesheet" href="cricket.css" />
+  </head>
+  <body>
+    <h1>Bat Ball Stump Game</h1>
+    <div class="button-container">
+      <button
+        onclick="
+          userChoice = 'bat';
+          let computerChoice = getComputerChoice();
+          displayResult(userChoice, computerChoice);
+        "
+      >
+        Bat
+      </button>
+
+      <button
+        onclick="
+          userChoice = 'ball';
+          computerChoice = getComputerChoice();
+          displayResult(userChoice, computerChoice);
+        "
+      >
+        Ball
+      </button>
+      <button
+        onclick="
+          userChoice = 'stump';
+          computerChoice = getComputerChoice();
+          displayResult(userChoice, computerChoice);
+        "
+      >
+        Stump
+      </button>
+    </div>
+
+    <script>
+      function getComputerChoice() {
+        let randomNumber = Math.floor(Math.random() * 3);
+        let computerChoice = "";
+        if (randomNumber === 0) {
+          computerChoice = "bat";
+        } else if (randomNumber === 1) {
+          computerChoice = "ball";
+        } else {
+          computerChoice = "stump";
+        }
+        console.log("Computer chose: " + computerChoice);
+
+        return computerChoice;
+      }
+
+      function getResult(userChoice, computerChoice) {
+        if (userChoice === computerChoice) {
+          return "tie";
+        } else if (
+          (userChoice === "bat" && computerChoice === "ball") ||
+          (userChoice === "ball" && computerChoice === "stump") ||
+          (userChoice === "stump" && computerChoice === "bat")
+        ) {
+          return "win";
+        } else {
+          return "lose";
+        }
+      }
+
+      function displayResult(userChoice, computerChoice) {
+        alert(
+          "You chose: " +
+            userChoice +
+            "\nComputer chose: " +
+            computerChoice +
+            "\nResult: " +
+            getResult(userChoice, computerChoice),
+        );
+      }
+    </script>
+  </body>
+</html>
