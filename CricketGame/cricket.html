@@ -37,9 +37,35 @@
       >
         Stump
       </button>
+
+      <button
+        onclick="
+          localStorage.clear();
+          score = {
+            won: 0,
+            lost: 0,
+            tied: 0,
+            showScore: function () {
+              return `Wins: ${this.won}, Losses: ${this.lost}, Ties: ${this.tied}`;
+            },
+          };
+        "
+      >
+        Reset Score
+      </button>
     </div>
 
     <script>
+      let scoreStr = localStorage.getItem("Score");
+      let score = JSON.parse(scoreStr) || {
+        won: 0,
+        lost: 0,
+        tied: 0,
+      };
+      score.showScore = function () {
+        return `Wins: ${this.won}, Losses: ${this.lost}, Ties: ${this.tied}`;
+      };
+
       function getComputerChoice() {
         let randomNumber = Math.floor(Math.random() * 3);
         let computerChoice = "";
@@ -57,26 +83,29 @@
 
       function getResult(userChoice, computerChoice) {
         if (userChoice === computerChoice) {
+          score.tied += 1;
           return "tie";
         } else if (
           (userChoice === "bat" && computerChoice === "ball") ||
           (userChoice === "ball" && computerChoice === "stump") ||
           (userChoice === "stump" && computerChoice === "bat")
         ) {
+          score.won += 1;
           return "win";
         } else {
+          score.lost += 1;
           return "lose";
         }
       }
 
       function displayResult(userChoice, computerChoice) {
+        localStorage.setItem("Score", JSON.stringify(score));
+        console.log(score);
         alert(
-          "You chose: " +
-            userChoice +
-            "\nComputer chose: " +
-            computerChoice +
-            "\nResult: " +
-            getResult(userChoice, computerChoice),
+          `You chose: ${userChoice}\nComputer chose: ${computerChoice}\nResult: ${getResult(
+            userChoice,
+            computerChoice,
+          )} \n${score.showScore()}`,
         );
       }
     </script>
