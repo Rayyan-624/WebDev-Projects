@@ -3,3 +3,18 @@ body{
     text-align: center;
     background-color: #f0f0f0;
 }
+
+.choice-button {
+    margin: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 40px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.choice-image {
+    width: 100px;
+    height: 100px;
+}

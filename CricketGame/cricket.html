@@ -8,58 +8,70 @@
   </head>
   <body>
     <h1>Bat Ball Stump Game</h1>
-    <div class="button-container">
-      <button
-        onclick="
-          userChoice = 'bat';
-          let computerChoice = getComputerChoice();
-          displayResult(userChoice, computerChoice);
-        "
-      >
-        Bat
-      </button>
+    <button
+      class="choice-button"
+      onclick="
+        userChoice = 'bat';
+        let computerChoice = getComputerChoice();
+        displayResult(userChoice, computerChoice);
+      "
+    >
+      <img
+        class="choice-image"
+        src="images/bat.webp"
+        alt="Bat"
+      />
+    </button>
 
-      <button
-        onclick="
-          userChoice = 'ball';
-          computerChoice = getComputerChoice();
-          displayResult(userChoice, computerChoice);
-        "
-      >
-        Ball
-      </button>
-      <button
-        onclick="
-          userChoice = 'stump';
-          computerChoice = getComputerChoice();
-          displayResult(userChoice, computerChoice);
-        "
-      >
-        Stump
-      </button>
+    <button
+      class="choice-button"
+      onclick="
+        userChoice = 'ball';
+        computerChoice = getComputerChoice();
+        displayResult(userChoice, computerChoice);
+      "
+    >
+      <img
+        class="choice-image"
+        src="images/ball.webp"
+        alt="Ball"
+      />
+    </button>
+    <button
+      class="choice-button"
+      onclick="
+        userChoice = 'stump';
+        computerChoice = getComputerChoice();
+        displayResult(userChoice, computerChoice);
+      "
+    >
+      <img class="choice-image"
+        src="images/stump.webp"
+        alt="Stump"
+      />
+    </button>
 
-      <button
-        onclick="
-          localStorage.clear();
-          score = {
-            won: 0,
-            lost: 0,
-            tied: 0,
-            showScore: function () {
-              return `Wins: ${this.won}, Losses: ${this.lost}, Ties: ${this.tied}`;
-            },
-          };
-          displayResult();
-        "
-      >
-        Reset Score
-      </button>
+    <h3 id="user-choice"></h3>
+    <h3 id="computer-choice"></h3>
+    <h3 id="result"></h3>
+    <h3 id="score"></h3>
 
-      <h3 id="user-choice"></h3>
-      <h3 id="computer-choice"></h3>
-      <h3 id="result"></h3>
-      <h3 id="score"></h3>
-    </div>
+    <button
+      onclick="
+        localStorage.clear();
+        score = {
+          won: 0,
+          lost: 0,
+          tied: 0,
+          showScore: function () {
+            return `Wins: ${this.won}, Losses: ${this.lost}, Ties: ${this.tied}`;
+          },
+        };
+        displayResult();
+      "
+    >
+      Reset Score
+    </button>
 
     <script>
       let scoreStr = localStorage.getItem("Score");
