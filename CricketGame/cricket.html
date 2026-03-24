@@ -49,10 +49,16 @@
               return `Wins: ${this.won}, Losses: ${this.lost}, Ties: ${this.tied}`;
             },
           };
+          displayResult();
         "
       >
         Reset Score
       </button>
+
+      <h3 id="user-choice"></h3>
+      <h3 id="computer-choice"></h3>
+      <h3 id="result"></h3>
+      <h3 id="score"></h3>
     </div>
 
     <script>
@@ -65,6 +71,8 @@
       score.showScore = function () {
         return `Wins: ${this.won}, Losses: ${this.lost}, Ties: ${this.tied}`;
       };
+
+      displayResult();
 
       function getComputerChoice() {
         let randomNumber = Math.floor(Math.random() * 3);
@@ -99,14 +107,23 @@
       }
 
       function displayResult(userChoice, computerChoice) {
+        let resultText = "";
+        if (userChoice && computerChoice) {
+          resultText = getResult(userChoice, computerChoice);
+        }
         localStorage.setItem("Score", JSON.stringify(score));
-        console.log(score);
-        alert(
-          `You chose: ${userChoice}\nComputer chose: ${computerChoice}\nResult: ${getResult(
-            userChoice,
-            computerChoice,
-          )} \n${score.showScore()}`,
-        );
+
+        document.querySelector("#user-choice").innerText = userChoice
+          ? `You chose: ${userChoice}`
+          : "";
+
+        document.querySelector("#computer-choice").innerText = computerChoice
+          ? `Computer chose: ${computerChoice}`
+          : "";
+
+        document.querySelector("#result").innerText = resultText;
+
+        document.querySelector("#score").innerText = score.showScore();
       }
     </script>
   </body>
